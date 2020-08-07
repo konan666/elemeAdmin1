@@ -6,6 +6,7 @@ import com.neusoft.domain.Admin;
 import com.neusoft.domain.Business;
 import com.neusoft.view.AdminView;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,5 +40,19 @@ public class AdminViewImpl implements AdminView {
         AdminDao dao=new AdminDaoImpl();
         return dao.aaacs(businessName,businessAddress);
 
+    }
+
+    @Override
+    public int setcr(String businessName) throws SQLException {
+        AdminDao dao=new AdminDaoImpl();
+        int sum=0;
+        return sum=dao.aaacr(businessName);
+    }
+
+    @Override
+    public int setsc(int businessId) throws SQLException {
+        AdminDao dao=new AdminDaoImpl();
+        int sum=0;
+        return sum=dao.aaasc(businessId);
     }
 }

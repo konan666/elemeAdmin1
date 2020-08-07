@@ -109,4 +109,45 @@ public class AdminDaoImpl implements AdminDao {
         }
         return list1;
 }
+
+    @Override
+    public int aaacr(String businessName) throws SQLException {
+        conn=JDBCUtils.getConnection();
+        int sum=0;
+        String sql="insert  into business(businessName) values (?)";
+        if(businessName!=null && !businessName.equals("")){
+        pstmt=conn.prepareStatement(sql);
+        pstmt.setString(1,businessName);
+        pstmt.executeUpdate();
+
+        try{
+            String sql2="select businessId from business where businessName=?";
+            pstmt=conn.prepareStatement(sql2);
+            pstmt.setString(1,businessName);
+            rs=pstmt.executeQuery();
+            while (rs.next()){
+                sum=rs.getInt(1);
+
+            }
+            System.out.println("新建商家成功！");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        }else {
+            System.out.println("请正确输入");
+        }
+        return sum;
+    }
+
+    @Override
+    public int aaasc(int businessId) throws SQLException {
+        conn=JDBCUtils.getConnection();
+        String sql="delete from business where businessId=?";
+        pstmt=conn.prepareStatement(sql);
+        pstmt.setInt(1,businessId);
+        int sum=pstmt.executeUpdate();
+        return sum;
+    }
+
 }

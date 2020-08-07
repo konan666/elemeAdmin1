@@ -11,9 +11,9 @@ import java.util.List;
 public class test {
     public static void main(String[] args)throws SQLException {
         AdminView dao=new AdminViewImpl();
-        List<Business> list=dao.setchaxun("饺子","沈阳");
-        for(Business i:list){
-            System.out.println(i);
-        }
+        int sum=dao.setsc(10011);
+        System.out.print(sum);
+
+
     }
 }

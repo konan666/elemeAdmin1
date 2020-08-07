@@ -7,6 +7,7 @@ import com.neusoft.domain.Business;
 import com.neusoft.view.AdminView;
 import com.neusoft.view.impl.AdminViewImpl;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,10 +16,10 @@ import java.util.Scanner;
  * @date 2020/8/7 11:30
  */
 public class ElmAdmin {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         work();
     }
-    public static  void  work(){
+    public static  void  work()throws SQLException {
         Scanner input = new Scanner(System.in);
 
         System.out.println("-----------------------------------------------------------");
@@ -50,21 +51,46 @@ public class ElmAdmin {
 
                         break;
                     case 2:
-
-                        System.out.println("请输入商家名");
-                        String name=input.next();
-                        System.out.println("请输入商家地址");
-                        String addr=input.next();
-                        List<Business> list1=adminView.setchaxun(name,addr);
+                        String aaa=null;
+                        String bbb=null;
+                        System.out.println("是否需要输入商家名称关键词(y/n)");
+                        String aa=input.next();
+                        if(aa.equals("y")){
+                            System.out.println("请输入商家名称关键词");
+                            aaa=input.next();
+                        }
+                        System.out.println("是否需要输入商家地址关键词(y/n)");
+                        String bb=input.next();
+                        if(bb.equals("y")){
+                        System.out.println("请输入商家地址关键词");
+                        bbb=input.next();
+                    }
+                        List<Business> list1=adminView.setchaxun(aaa,bbb);
                         for(Business a:list1){
                             System.out.println(a);
                         }
                         break;
                     case 3:
-                        System.out.println("");
+                        System.out.println("请输入商家名");
+                        String uname=input.next();
+                        int sum=adminView.setcr(uname);
+                        System.out.println(sum);
                         break;
                     case 4:
-                        System.out.println("");
+                        System.out.println("请输入商家名");
+                        int uuname=input.nextInt();
+                        System.out.println("确认要删除吗？(y/n)");
+                        String a=input.next();
+                        if(a.equals("y")){
+                            int summ=adminView.setsc(uuname);
+                            if(summ!=0){
+                                System.out.println("删除商家成功");
+                            }else {
+                                System.out.println("删除商家失败");
+                            }
+                        }else{
+                            break;
+                        }
                         break;
                     case 5:
                         System.out.println("欢迎下次光临！");
