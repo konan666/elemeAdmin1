@@ -3,8 +3,10 @@ package com.neusoft.view.impl;
 import com.neusoft.dao.AdminDao;
 import com.neusoft.dao.Impl.AdminDaoImpl;
 import com.neusoft.domain.Admin;
+import com.neusoft.domain.Business;
 import com.neusoft.view.AdminView;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -24,5 +26,18 @@ public class AdminViewImpl implements AdminView {
 //        Admin admin = dao.getAdminByNameByPass(adminName, password);
 //        return admin;
         return dao.getAdminByNameByPass(adminName, password);
+    }
+
+    @Override
+    public List<Business> getselect() {
+        AdminDao dao = new AdminDaoImpl();
+        return (List<Business>) dao.getSelect();
+    }
+
+    @Override
+    public List<Business> setchaxun(String businessName,String businessAddress) {
+        AdminDao dao=new AdminDaoImpl();
+        return dao.aaacs(businessName,businessAddress);
+
     }
 }
