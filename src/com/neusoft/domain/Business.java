@@ -67,7 +67,7 @@ public class Business {
 
     @Override
     public String toString() {
-        return  businessId +
+        return  "\n"+businessId +
                  pawword + " " +
                  businessName + " " +
                  businessAddress + " " +
